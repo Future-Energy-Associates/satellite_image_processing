@@ -1,8 +1,10 @@
 name: sat_image_processing
+
 channels:
   - conda-forge
   - pytorch
   - pvlib
+  
 dependencies:
   - python>=3.7
   - pytest
@@ -23,3 +25,10 @@ dependencies:
   - gdal
   - pytorch
   - pvlib
+  - tabulate
+  - python-dotenv
+  - pip
+  
+  - pip:
+      - feautils
+  

@@ -18,6 +18,24 @@ To Do:
 - [ ] Create scraper for the new EUMETSTAT data service
 
 <br>
+
+Questions:
+
+* What was the conclusion of comparing EUMETSAT file formats?
+* 
+* What is explore y offset investigating?
+
+<br>
+<br>
+
+### Overview
+
+| Notebook                 | Description                             | Maintainer   |
+|:-------------------------|:----------------------------------------|:-------------|
+| 00) Repository Helpers   | Code for keeping the repository tidy    | Ayrton Bourn |
+| 01) EUMETSAT API Wrapper | Development of API wrapper for EUMETSAT | Ayrton Bourn |
+
+<br>
 <br>
 
 ### Installation/Set-Up
