@@ -4,6 +4,7 @@ channels:
   - conda-forge
   - pytorch
   - pvlib
+  - coecms
   
 dependencies:
   - python>=3.7
@@ -27,8 +28,11 @@ dependencies:
   - pvlib
   - tabulate
   - python-dotenv
+  - xmltodict
+  - dataset
   - pip
   
   - pip:
+      - ipypb
       - feautils
   

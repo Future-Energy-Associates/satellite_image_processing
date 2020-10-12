@@ -21,6 +21,7 @@ To Do:
 
 Questions:
 
+* What metadata is relevant and should be stored for each EUMETSAT dataset?
 * What was the conclusion of comparing EUMETSAT file formats?
 * What is explore y offset investigating?
 
