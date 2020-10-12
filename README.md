@@ -22,7 +22,6 @@ To Do:
 Questions:
 
 * What was the conclusion of comparing EUMETSAT file formats?
-* 
 * What is explore y offset investigating?
 
 <br>
