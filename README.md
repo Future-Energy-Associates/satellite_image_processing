@@ -30,10 +30,11 @@ Questions:
 
 ### Overview
 
-| Notebook                 | Description                             | Maintainer   |
-|:-------------------------|:----------------------------------------|:-------------|
-| 00) Repository Helpers   | Code for keeping the repository tidy    | Ayrton Bourn |
-| 01) EUMETSAT API Wrapper | Development of API wrapper for EUMETSAT | Ayrton Bourn |
+| Notebook                 | Description                               | Maintainer   |
+|:-------------------------|:------------------------------------------|:-------------|
+| 00) Repository Helpers   | Code for keeping the repository tidy      | Ayrton Bourn |
+| 01) EUMETSAT API Wrapper | Development of API wrapper for EUMETSAT   | Ayrton Bourn |
+| 02) Data Transformation  | Intial EDA and transformation comparisons | Ayrton Bourn |
 
 <br>
 <br>
