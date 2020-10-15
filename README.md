@@ -58,4 +58,16 @@ jupyter labextension install @jupyter-widgets/jupyterlab-manager
 jupyter labextension install jupyter-matplotlib
 ```
 
+<br>
 
+### Publishing to PyPi
+
+To publish the `satip` module to PyPi simply run the following
+
+```bash
+pypi_publish anaconda_dir
+```
+
+Where `anaconda_dir` is the path to your anaconda directory - e.g. C:\Users\Ayrto\anaconda3
+
+When prompted you should enter your PyPi username and password
