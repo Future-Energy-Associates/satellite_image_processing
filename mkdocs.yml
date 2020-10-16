@@ -6,8 +6,8 @@ theme:
   name: material
   icon:
     repo: fontawesome/brands/git-alt
-  #  logo: img/logo
-  #favicon: img/favicon
+#     logo: img/logo
+#   favicon: img/favicon
   features:
     - header.autohide
     - navigation.instant

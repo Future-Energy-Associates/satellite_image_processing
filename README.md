@@ -34,9 +34,9 @@ Questions:
 
 | Name                 | Directory      |   Number | Description                                 | Maintainer   |
 |:---------------------|:---------------|---------:|:--------------------------------------------|:-------------|
-| Repository Helpers   | notebooks      |       00 | Code for keeping the repository tidy        | Ayrton Bourn |
-| EUMETSAT API Wrapper | notebooks      |       01 | Development of the API wrapper for ems      | Ayrton Bourn |
-| Data Transformation  | notebooks      |       02 | Intial EDA and transformation comparisons   | Ayrton Bourn |
+| Repository Helpers   | development    |       00 | Code for keeping the repository tidy        | Ayrton Bourn |
+| EUMETSAT API Wrapper | development    |       01 | Development of the API wrapper for ems      | Ayrton Bourn |
+| Data Transformation  | development    |       02 | Intial EDA and transformation comparisons   | Ayrton Bourn |
 | EUMETSAT Download    | usage_examples |       00 | Guidance for using the ems download manager | Ayrton Bourn |
 
 <br>
@@ -63,7 +63,7 @@ jupyter labextension install jupyter-matplotlib
 
 ### Publishing to PyPi
 
-To publish the `satip` module to PyPi simply run the following
+To publish the `satip` module to PyPi simply run the following from the batch_scripts directory
 
 ```bash
 pypi_publish anaconda_dir
