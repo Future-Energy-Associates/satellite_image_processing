@@ -2,3 +2,20 @@ site_name: Satip Documentation
 
 theme:
   name: material
+  icon:
+    repo: fontawesome/brands/git-alt
+  features:
+    - header.autohide
+  
+repo_url: https://github.com/Future-Energy-Associates/satellite_image_processing
+repo_name: OCF/sat-img-proc
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/OpenClimateFix
+    - icon: fontawesome/brands/github
+      link: https://github.com/openclimatefix
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/open-climate-fix/

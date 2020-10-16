@@ -32,11 +32,12 @@ Questions:
 
 ### Overview
 
-| Notebook                 | Description                                | Maintainer   |
-|:-------------------------|:-------------------------------------------|:-------------|
-| 00) Repository Helpers   | Code for keeping the repository tidy       | Ayrton Bourn |
-| 01) EUMETSAT API Wrapper | Development of API wrapper for EUMETSAT    | Ayrton Bourn |
-| 02) Data Transformation  | Initial EDA and transformation comparisons | Ayrton Bourn |
+| Name                 | Directory      |   Number | Description                                 | Maintainer   |
+|:---------------------|:---------------|---------:|:--------------------------------------------|:-------------|
+| Repository Helpers   | notebooks      |       00 | Code for keeping the repository tidy        | Ayrton Bourn |
+| EUMETSAT API Wrapper | notebooks      |       01 | Development of the API wrapper for ems      | Ayrton Bourn |
+| Data Transformation  | notebooks      |       02 | Intial EDA and transformation comparisons   | Ayrton Bourn |
+| EUMETSAT Download    | usage_examples |       00 | Guidance for using the ems download manager | Ayrton Bourn |
 
 <br>
 <br>
@@ -71,3 +72,9 @@ pypi_publish anaconda_dir
 Where `anaconda_dir` is the path to your anaconda directory - e.g. C:\Users\Ayrto\anaconda3
 
 When prompted you should enter your PyPi username and password
+
+<br>
+
+### General Notes
+
+Good video on documentation that we should try to incorporate ideas from - https://youtu.be/wEt_8twQctQ
