@@ -1,5 +1,7 @@
 # README
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Future-Energy-Associates/satellite_image_processing/master?urlpath=lab)
+
 This repository contains the code necessary for retrieving, transforming and storing EUMETSAT data
 
 <br>
