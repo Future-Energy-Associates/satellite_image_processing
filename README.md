@@ -44,6 +44,8 @@ Questions:
 
 ### Installation/Set-Up
 
+* Should streamline this an also create a batch script - need mac equivalents
+
 ```
 git clone
 conda env create -f environment.yml
@@ -72,6 +74,8 @@ pypi_publish anaconda_dir
 Where `anaconda_dir` is the path to your anaconda directory - e.g. C:\Users\Ayrto\anaconda3
 
 When prompted you should enter your PyPi username and password
+
+After this you will be able to install the latest version of satip using `pip install satip`
 
 <br>
 
