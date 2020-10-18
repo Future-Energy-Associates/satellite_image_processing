@@ -1,6 +1,6 @@
 # EUMETSAT Download Example
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Future-Energy-Associates/satellite_image_processing/master?urlpath=lab%2Ftree%2Fusage_examples%2F00)%20EUMETSAT%20Download.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Future-Energy-Associates/satellite_image_processing/master?urlpath=lab%2Ftree%2Fusage_examples%2F00%29%20EUMETSAT%20Download.ipynb)
 
 <br>
 
