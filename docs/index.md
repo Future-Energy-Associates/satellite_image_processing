@@ -5,6 +5,7 @@
 We can add a to do list:
 
 - [x] With tasks like this
+- [ ] And optional tick boxes
 
 <br>
 
