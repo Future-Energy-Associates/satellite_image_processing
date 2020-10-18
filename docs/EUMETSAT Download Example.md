@@ -8,6 +8,7 @@ This notebook outlines how the `satip` module can be used to download data from 
 
 ### Imports
 
+We will begin by in importing the relevant libraries, you can install the latest version of satip using `pip install satip`
 
 ```python
 from satip import eumetsat as ems
