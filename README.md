@@ -26,6 +26,7 @@ To Do:
 Questions:
 
 * Should we also be downloading images taken at night?
+* How is the LowerEastColumnPlanned adjustment currently being handled?
 * What metadata is relevant and should be stored for each EUMETSAT dataset?
 * What was the conclusion of comparing EUMETSAT file formats?
 * What is explore y offset investigating?
