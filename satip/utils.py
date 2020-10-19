@@ -53,18 +53,18 @@ def set_up_logging(name: str, logging_level: str,
     stream_handler.setFormatter(formatter)
     logger.addHandler(stream_handler)
 
-    # Configuring file ouput handler
+    # Configuring file output handler
     file_handler = logging.FileHandler(log_fp, mode='a')
     file_handler.setFormatter(formatter)
     file_handler.setLevel(logging.DEBUG)
     logger.addHandler(file_handler)
 
-    # Configuring slack ouput handler
+    # Configuring slack output handler
     if (slack_webhook_url is not None) and (slack_id is not None):
         sh = SlackHandler(username='logger', icon_emoji=':robot_face:', url=slack_webhook_url, mention=slack_id)
         sf = SlackFormatter()
         sh.setFormatter(sf)
-        sh.setLevel(logging.DEBUG)
+        sh.setLevel(logging.CRITICAL)
         logger.addHandler(sh)
     
     return logger

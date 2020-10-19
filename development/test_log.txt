@@ -1,0 +1,2 @@
+2020-10-20 00:57:42,648 - INFO - test log
+2020-10-20 00:58:03,446 - CRITICAL - If this works then only the critical log should post to Slack
