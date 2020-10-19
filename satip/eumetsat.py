@@ -14,6 +14,8 @@ import copy
 import os
 import io
 
+from satip import utils
+
 from requests.auth import HTTPBasicAuth
 import requests
 
@@ -216,7 +218,13 @@ def get_dir_size(directory='.'):
 Download Manager
 """
 class DownloadManager:
-    def __init__(self, user_key: str, user_secret: str, data_dir: str, metadata_db_fp: str):
+    def __init__(self, user_key: str, user_secret: str, data_dir: str, metadata_db_fp: str, 
+                 debug_fp: str, slack_webhook_url: str=None, slack_id: str=None):
+        
+        # Configuring the logger
+        self.logger = utils.set_up_logging('EUMETSAT Download', 'DEBUG', debug_fp, slack_webhook_url, slack_id)
+        self.logger.info(f'********** Download Manager Initialised **************')
+        
         # Requesting the API access token
         self.user_key = user_key
         self.user_secret = user_secret
@@ -263,6 +271,7 @@ class DownloadManager:
                 try:
                     self.download_single_dataset(dataset_link)
                 except:
+                    self.logger.info('The EUMETSAT access token has been refreshed')
                     self.access_token = request_access_token(self.user_key, self.user_secret)
                     self.download_single_dataset(dataset_link)
 

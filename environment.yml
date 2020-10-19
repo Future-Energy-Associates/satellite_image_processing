@@ -39,4 +39,5 @@ dependencies:
       - ipypb
       - feautils
       - satip
+      - slack-logger
       - mkdocs-material-extensions
