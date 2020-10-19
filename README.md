@@ -46,7 +46,7 @@ Questions:
 
 ### Installation/Set-Up
 
-* Should streamline this an also create a batch script - need mac equivalents
+* Should streamline this and also create a batch script - need mac equivalents
 
 ```
 git clone
