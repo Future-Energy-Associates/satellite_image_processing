@@ -42,6 +42,10 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.highlight
   - pymdownx.superfences
+  
+plugins:
+  - search
+  - mkdocstrings
       
 extra_javascript:
   - javascripts/config.js

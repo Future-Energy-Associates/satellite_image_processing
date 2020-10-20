@@ -9,10 +9,10 @@ We can add a to do list:
 
 <br>
 
-We can also display MathJax like this: $2+2=5$
+Footnotes can also be added[^1]
 
 <br>
 
-Footnotes can also be added[^1]
+We can also display MathJax like this: $2+2=5$
 
 [^1]: No matter where this is added in the text it will be rendered in the footer

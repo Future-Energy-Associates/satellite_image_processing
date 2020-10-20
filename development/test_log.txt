@@ -1,2 +1,6 @@
 2020-10-20 00:57:42,648 - INFO - test log
 2020-10-20 00:58:03,446 - CRITICAL - If this works then only the critical log should post to Slack
+2020-10-20 10:24:28,706 - INFO - This will output to file and Jupyter but not to Slack as it is not critical
+2020-10-20 10:24:28,706 - INFO - This will output to file and Jupyter but not to Slack as it is not critical
+2020-10-20 10:24:28,706 - INFO - This will output to file and Jupyter but not to Slack as it is not critical
+2020-10-20 10:24:35,367 - INFO - This will output to file and Jupyter but not to Slack as it is not critical
