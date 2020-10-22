@@ -36,9 +36,9 @@ dependencies:
   - pip
   
   - pip:
+      - -e .
       - ipypb
       - feautils
-      - satip
       - slack-logger
       - mkdocs-material-extensions
       - mkdocstrings
