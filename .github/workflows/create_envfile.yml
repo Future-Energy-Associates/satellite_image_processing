@@ -10,8 +10,8 @@ jobs:
       uses: SpicyPizza/create-envfile@v1
       with:
         envkey_DEBUG: false
-        user_key: ${{ secrets.USER_KEY }}"
-        user_secret: ${{ secrets.USER_SECRET }}
-        slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
-        slack_id: ${{ secrets.SLACK_ID }}
+        envkey_user_key: ${{ secrets.USER_KEY }}"
+        envkey_user_secret: ${{ secrets.USER_SECRET }}
+        envkey_slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+        envkey_slack_id: ${{ secrets.SLACK_ID }}
         file_name: .env
