@@ -2,7 +2,7 @@ import os
 import pytest
 import dotenv
 
-def test_load_env_vars(env_var_keys=['user_key', 'user_secret', 'slack_id', 'slack_webhook_url']):
+def test_load_env_vars(env_var_keys=['USER_KEY', 'USER_SECRET', 'SLACK_ID', 'SLACK_WEBHOOK_URL']):
     dotenv.load_dotenv('../.env')
     
     for env_var_key in env_var_keys:
