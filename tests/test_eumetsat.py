@@ -2,14 +2,10 @@ import os
 import pytest
 import dotenv
 
-def test_load_env_vars():
-    print(os.listdir())
+def test_load_env_vars(env_var_keys=['user_key', 'user_secret', 'slack_id', 'slack_webhook_url']):
     dotenv.load_dotenv('../.env')
-
-    user_key = os.environ.get('user_key')
-    user_secret = os.environ.get('user_secret')
-    slack_id = os.environ.get('slack_id')
-    slack_webhook_url = os.environ.get('slack_webhook_url')
-
-    assert user_key is not None
-    print(slack_id)
+    
+    for env_var_key in env_var_keys:
+        env_var = os.environ.get(env_var_key)
+        
+        assert env_var is not None, f'The {env_var_key} was not loaded succesfully'
