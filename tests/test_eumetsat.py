@@ -2,6 +2,8 @@ import os
 import pytest
 import dotenv
 
+dotenv.load()
+
 user_key = os.environ.get('user_key')
 user_secret = os.environ.get('user_secret')
 slack_id = os.environ.get('slack_id')
