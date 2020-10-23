@@ -1,7 +1,7 @@
 import pytest
 import dotenv
 
-assert dotenv.load_dotenv('../.env), 'The environment variables were not loaded successfully'
+assert dotenv.load_dotenv('../.env)==True, 'The environment variables were not loaded successfully'
 
 user_key = os.environ.get('user_key')
 user_secret = os.environ.get('user_secret')
