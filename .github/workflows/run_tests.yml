@@ -13,11 +13,6 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.8
-        
-    - name: Load env vars
-      uses: c-py/action-dotenv-to-setenv@v1
-      with:
-        env-file: .env
       
     - name: Install dependencies
       run: |
@@ -25,6 +20,11 @@ jobs:
         $CONDA/bin/conda env update --file environment.yml --name base
         
     - name: Test with pytest
+      env: 
+        USER_KEY: ${{ secrets.USER_KEY }}
+        USER_SECRET: ${{ secrets.USER_SECRET }}
+        SLACK_ID: ${{ secrets.SLACK_ID }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       run: |
         $CONDA/bin/pytest tests/test_eumetsat.py
       
