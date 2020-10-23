@@ -2,7 +2,8 @@ import os
 import pytest
 import dotenv
 
-dotenv.load()
+print(os.listdir())
+dotenv.load_dotenv('../.env')
 
 user_key = os.environ.get('user_key')
 user_secret = os.environ.get('user_secret')
