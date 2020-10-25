@@ -17,24 +17,21 @@ Goals:
 
 To Do:
 
-- [x] Create scraper for the new EUMETSTAT data service
 - [ ] Test transform options
-- [ ] Move the metadata db to BigQuery
+- [ ] Move the metadata db to a GCP oriented process
 
 <br>
 
 Questions:
 
 * Should we also be downloading images taken at night?
-* How is the LowerEastColumnPlanned adjustment currently being handled?
 * What metadata is relevant and should be stored for each EUMETSAT dataset?
 * What was the conclusion of comparing EUMETSAT file formats?
-* What is explore y offset investigating?
 
 <br>
 <br>
 
-### Overview
+### Notebooks 
 
 | Name                 | Directory      |   Number | Description                                 | Maintainer   |
 |:---------------------|:---------------|---------:|:--------------------------------------------|:-------------|
@@ -75,14 +72,8 @@ To publish the `satip` module to PyPi simply run the following from the batch_sc
 pypi_publish <anaconda_dir>
 ```
 
-Where `<anaconda_dir>` is the path to your anaconda directory - e.g. C:\Users\Ayrto\anaconda3
+Where `<anaconda_dir>` is the path to your anaconda directory - e.g. C:\Users\User\anaconda3
 
 When prompted you should enter your PyPi username and password
 
 After this you will be able to install the latest version of satip using `pip install satip`
-
-<br>
-
-### General Notes
-
-Good video on documentation that we should try to incorporate ideas from - https://youtu.be/wEt_8twQctQ
