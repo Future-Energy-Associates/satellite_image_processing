@@ -20,6 +20,7 @@ dependencies:
   - xarray
   - cartopy
   - pyproj
+  - pyinterp
   - geopandas
   - rasterio
   - pillow  # for image loading and processing
@@ -37,6 +38,7 @@ dependencies:
   
   - pip:
       - -e .
+      - apache-airflow
       - ipypb
       - feautils
       - slack-logger

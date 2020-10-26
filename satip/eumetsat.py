@@ -84,6 +84,18 @@ metadata_maps = {
 Functions
 """
 def request_access_token(user_key, user_secret):
+    """
+    Requests an access token from the EUMETSAT data API
+    
+    Parameters:
+        user_key: EUMETSAT API key
+        user_secret: EUMETSAT API secret
+        
+    Returns:
+        access_token: API access token
+        
+    """
+    
     token_url = 'https://api.eumetsat.int/token'
 
     data = {
@@ -104,6 +116,24 @@ def query_data_products(
     num_features=10000,
     product_id='EO:EUM:DAT:MSG:MSG15-RSS'
 ):
+    """
+    Queries the EUMETSAT data API for the specified data
+    product and date-range. The dates will accept any
+    format that can be interpreted by `pd.to_datetime`.
+    A maximum of 10,000 entries are returned by the API
+    so the indexes of the returned entries can be specified.
+    
+    Parameters:
+        start_date: Start of the query period
+        end_date: End of the query period
+        start_index: Starting index of returned entries
+        num_features: Number of returned entries
+        product_id: ID of the EUMETSAT product requested
+        
+    Returns:
+        r: Response from the request
+        
+    """
     
     search_url = 'https://api.eumetsat.int/data/search-products/os'
 
@@ -125,6 +155,21 @@ def query_data_products(
 
 def identify_available_datasets(start_date: str, end_date: str, 
                                 product_id='EO:EUM:DAT:MSG:MSG15-RSS'):
+    """
+    Identifies available datasets from the EUMETSAT data
+    API for the specified data product and date-range. 
+    The dates will accept any format that can be 
+    interpreted by `pd.to_datetime`.
+    
+    Parameters:
+        start_date: Start of the query period
+        end_date: End of the query period
+        product_id: ID of the EUMETSAT product requested
+        
+    Returns:
+        r: Response from the request
+        
+    """
     
     num_features = 10000
     start_index = 0
@@ -189,10 +234,18 @@ def extract_metadata(data_dir: str, product_id='EO:EUM:DAT:MSG:MSG15-RSS'):
 
     return cleaned_metadata
 
-class InvalidCredentials(Exception):
-    pass
-
 def check_valid_request(r):
+    """
+    Checks that the response from the request is valid
+    
+    Parameters:
+        r: Response object from the request
+
+    """
+    
+    class InvalidCredentials(Exception):
+        pass
+    
     if r.ok == False:
         if 'Invalid Credentials' in r.text:
             raise InvalidCredentials('The access token passed in the API request is invalid')
@@ -218,18 +271,50 @@ def get_dir_size(directory='.'):
 Download Manager
 """
 class DownloadManager:
-    def __init__(self, user_key: str, user_secret: str, data_dir: str, metadata_db_fp: str, 
-                 debug_fp: str, slack_webhook_url: str=None, slack_id: str=None):
+    """
+    The DownloadManager class provides a handler for downloading data
+    from the EUMETSAT API, managing: retrieval, logging and metadata
+    
+    """
+    
+    def __init__(self, user_key: str, user_secret: str, 
+                 data_dir: str, metadata_db_fp: str, log_fp: str, 
+                 main_logging_level: str='DEBUG', slack_logging_level: str='CRITICAL', 
+                 slack_webhook_url: str=None, slack_id: str=None):
+        """
+        Initialises the download manager by:
+        * Setting up the logger
+        * Requesting an API access token
+        * Configuring the download directory
+        * Connecting to the metadata database
+        * Adding satip helper functions
+
+        Parameters:
+            user_key: EUMETSAT API key
+            user_secret: EUMETSAT API secret
+            data_dir: Path to the directory where the satellite data will be saved
+            metadata_db_fp: Path to where the metadata database is stored/will be saved
+            log_fp: Filepath where the logs will be stored
+            main_logging_level: Logging level for file and Jupyter
+            slack_logging_level: Logging level for Slack
+            slack_webhook_url: Webhook for the log Slack channel
+            slack_id: Option user-id to mention in Slack
+
+        Returns:
+            download_manager: Instance of the DownloadManager class
+
+        """
         
         # Configuring the logger
-        self.logger = utils.set_up_logging('EUMETSAT Download', 'DEBUG', debug_fp, slack_webhook_url, slack_id)
+        self.logger = utils.set_up_logging('EUMETSAT Download', log_fp, 
+                                           main_logging_level, slack_logging_level, 
+                                           slack_webhook_url, slack_id)
+        
         self.logger.info(f'********** Download Manager Initialised **************')
         
         # Requesting the API access token
         self.user_key = user_key
         self.user_secret = user_secret
-        
-        self.access_token = request_access_token(self.user_key, self.user_secret)
         
         # Configuring the data directory
         self.data_dir = data_dir
@@ -241,9 +326,46 @@ class DownloadManager:
         self.metadata_db = dataset.connect(f'sqlite:///{metadata_db_fp}')
         self.metadata_table = self.metadata_db['metadata']
         
+        # Adding satip helper functions
+        self.identify_available_datasets = identify_available_datasets
+        self.query_data_products = query_data_products
+        
+        return
+    
+    
+    def request_access_token(self, user_key=None, user_secret=None): 
+        """
+        Requests an access token from the EUMETSAT data API.
+        If no key or secret are provided then they will default
+        to the values provided in the download manager initialisation
+
+        Parameters:
+            user_key: EUMETSAT API key
+            user_secret: EUMETSAT API secret
+
+        Returns:
+            access_token: API access token
+
+        """
+    
+        if user_key is None:
+            user_key = self.user_key
+        if user_secret is None:
+            user_secret = self.user_key
+            
+        self.access_token = request_access_token(user_key, user_secret)
+        
         return
         
-    def download_single_dataset(self, data_link: str):
+    def download_single_dataset(self, data_link:str):
+        """
+        Downloads a single dataset from the EUMETSAT API
+
+        Parameters:
+            data_link: Url link for the relevant dataset
+        
+        """
+        
         params = {
             'access_token': self.access_token
         }
@@ -258,6 +380,17 @@ class DownloadManager:
         return
 
     def download_datasets(self, start_date:str, end_date:str, product_id='EO:EUM:DAT:MSG:MSG15-RSS'):
+        """
+        Downloads a set of dataset from the EUMETSAT API
+        in the defined date range and specified product
+
+        Parameters:
+            start_date: Start of the requested data period
+            end_date: End of the requested data period
+            product_id: ID of the EUMETSAT product requested
+        
+        """
+        
         # Identifying dataset ids to download
         datasets = identify_available_datasets(start_date, end_date, product_id=product_id)
         dataset_ids = sorted([dataset['id'] for dataset in datasets])
@@ -272,7 +405,7 @@ class DownloadManager:
                     self.download_single_dataset(dataset_link)
                 except:
                     self.logger.info('The EUMETSAT access token has been refreshed')
-                    self.access_token = request_access_token(self.user_key, self.user_secret)
+                    self.request_access_token()
                     self.download_single_dataset(dataset_link)
 
                 # Extract and save metadata
