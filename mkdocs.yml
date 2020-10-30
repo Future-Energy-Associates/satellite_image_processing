@@ -61,5 +61,5 @@ nav:
   - About:
     - Open Climate Fix: OCF.md
   - API:
-    - EUMETSAT: API/EUMETSAT.md
+    - EUMETSAT: API/eumetsat.md
     - Utilities: API/utils.md
