@@ -11,6 +11,7 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
+      - run: echo "/home/runner/work/meml/meml" >> $PYTHONPATH
       - run: pip install satip
       - run: pip install slack-logger
       - run: pip install mkdocstrings
