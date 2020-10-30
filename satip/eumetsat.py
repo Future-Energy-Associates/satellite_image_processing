@@ -83,6 +83,25 @@ metadata_maps = {
 """
 Functions
 """
+def handle_response_errors(r):
+    """
+    Checks that the response from the request is valid
+    
+    Parameters:
+        r: Response object from the request
+        
+    """
+    
+    r_json = r.json()
+    
+    if 'error' in r_json.keys():
+        raise Exception(f"Error: {r_json['error']}\nDescription: {r_json['error_description']}")
+        
+    if r.ok == False:
+        raise Exception(f'Request was unsuccesful - Error code: {r.status_code}')
+        
+    return
+
 def request_access_token(user_key, user_secret):
     """
     Requests an access token from the EUMETSAT data API
@@ -101,8 +120,9 @@ def request_access_token(user_key, user_secret):
     data = {
       'grant_type': 'client_credentials'
     }
-
+    
     r = requests.post(token_url, data=data, auth=(user_key, user_secret))
+    handle_response_errors(r)
     access_token = r.json()['access_token']
 
     return access_token
@@ -148,8 +168,7 @@ def query_data_products(
     }
 
     r = requests.get(search_url, params=params)
-    
-    assert r.ok, f'Request was unsuccesful - Error code: {r.status_code}'
+    handle_response_errors(r)
     
     return r
 
@@ -233,26 +252,6 @@ def extract_metadata(data_dir: str, product_id='EO:EUM:DAT:MSG:MSG15-RSS'):
         cleaned_metadata[feature] = formatted_value
 
     return cleaned_metadata
-
-def check_valid_request(r):
-    """
-    Checks that the response from the request is valid
-    
-    Parameters:
-        r: Response object from the request
-
-    """
-    
-    class InvalidCredentials(Exception):
-        pass
-    
-    if r.ok == False:
-        if 'Invalid Credentials' in r.text:
-            raise InvalidCredentials('The access token passed in the API request is invalid')
-        else:
-            raise Exception('The API request was unsuccesful')
-            
-    return
 
 def get_dir_size(directory='.'):
     total_size = 0
@@ -353,7 +352,7 @@ class DownloadManager:
         if user_key is None:
             user_key = self.user_key
         if user_secret is None:
-            user_secret = self.user_key
+            user_secret = self.user_secret
             
         self.access_token = request_access_token(user_key, user_secret)
         
@@ -376,8 +375,7 @@ class DownloadManager:
         }
 
         r = requests.get(data_link, params=params)
-
-        check_valid_request(r)
+        handle_response_errors(r)
 
         zipped_files = zipfile.ZipFile(io.BytesIO(r.content))
         zipped_files.extractall(f'{self.data_dir}')
