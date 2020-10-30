@@ -8,6 +8,7 @@ theme:
     repo: fontawesome/brands/git-alt
 #     logo: img/logo
 #   favicon: img/favicon
+  custom_dir: docs/overrides
   features:
     - header.autohide
     - navigation.tabs
