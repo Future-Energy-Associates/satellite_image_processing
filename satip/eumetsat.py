@@ -91,14 +91,16 @@ def handle_response_errors(r):
         r: Response object from the request
         
     """
-    
-    r_json = r.json()
-    
-    if 'error' in r_json.keys():
-        raise Exception(f"Error: {r_json['error']}\nDescription: {r_json['error_description']}")
-        
+
     if r.ok == False:
-        raise Exception(f'Request was unsuccesful - Error code: {r.status_code}')
+        r_json = r.json()
+        
+        if ('error' in r_json.keys()) and ('error_description' in r_json.keys()):
+            exception_str = f"Error: {r_json['error']}\nDescription: {r_json['error_description']}"
+        else:
+            exception_str = f'Request was unsuccesful - Error code: {r.status_code}'
+            
+        raise Exception(exception_str)
         
     return
 
@@ -376,7 +378,7 @@ class DownloadManager:
 
         r = requests.get(data_link, params=params)
         handle_response_errors(r)
-
+        
         zipped_files = zipfile.ZipFile(io.BytesIO(r.content))
         zipped_files.extractall(f'{self.data_dir}')
 
