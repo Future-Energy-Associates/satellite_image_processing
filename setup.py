@@ -5,7 +5,7 @@ with open("satip/README.md", "r") as fh:
 
 setuptools.setup(
     name="satip",
-    version="0.0.3",
+    version="0.0.4",
     author="Ayrton Bourn",
     author_email="ayrton@futureenergy.associates",
     description="Satip is a Python library for satellite image processing",

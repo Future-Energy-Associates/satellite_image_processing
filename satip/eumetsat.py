@@ -316,6 +316,8 @@ class DownloadManager:
         self.user_key = user_key
         self.user_secret = user_secret
         
+        self.request_access_token()
+        
         # Configuring the data directory
         self.data_dir = data_dir
         
@@ -366,6 +368,9 @@ class DownloadManager:
         
         """
         
+        if hasattr(self, 'access_token') == False:
+            self.request_access_token()
+            
         params = {
             'access_token': self.access_token
         }
